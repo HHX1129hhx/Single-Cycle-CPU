@@ -21,98 +21,124 @@ begin
     case (OpCode)
         `INSTR_RTYPE_OP:
         begin
-            assign jump = 0;
-            assign RegDst = 1;
-            assign Branch = 0;
-            assign MemR = 0;
-            assign Mem2R = 0;
-            assign MemW = 0;
-            assign RegW = 1;
-            assign Alusrc = 0;
-            assign ExtOp = `EXT_ZERO;
+            jump = 0;
+            RegDst = 1;
+            Branch = 0;
+            MemR = 0;
+            Mem2R = 0;
+            MemW = 0;
+            RegW = 1;
+            Alusrc = 0;
+            ExtOp = `EXT_ZERO;
 
             case (funct)
                 `INSTR_ADD_FUNCT:
-                    assign Aluctrl = `ALUOp_ADD;
+                    Aluctrl = `ALUOp_ADD;
                 `INSTR_ADDU_FUNCT:
-                    assign Aluctrl = `ALUOp_ADDU;
+                    Aluctrl = `ALUOp_ADDU;
                 `INSTR_SUB_FUNCT:
-                    assign Aluctrl = `ALUOp_SUB;
+                    Aluctrl = `ALUOp_SUB;
                 `INSTR_SUBU_FUNCT:
-                    assign Aluctrl = `ALUOp_SUBU;
+                    Aluctrl = `ALUOp_SUBU;
+                `INSTR_AND_FUNCT:
+                    Aluctrl = `ALUOp_AND;
+                `INSTR_NOR_FUNCT:
+                    Aluctrl = `ALUOp_NOR;
+                `INSTR_OR_FUNCT:
+                    Aluctrl = `ALUOp_OR;
+                `INSTR_XOR_FUNCT:
+                    Aluctrl = `ALUOp_XOR;
+                `INSTR_SLT_FUNCT:
+                    Aluctrl = `ALUOp_SLT;
+                `INSTR_SLTU_FUNCT:
+                    Aluctrl = `ALUOp_SLTU;
             endcase
         end
 
         `INSTR_ORI_OP:
         begin
-            assign jump = 0;
-            assign RegDst = 0;
-            assign Branch = 0;
-            assign MemR = 0;
-            assign Mem2R = 0;
-            assign MemW = 0;
-            assign RegW = 1;
-            assign Alusrc = 1;
-            assign ExtOp = `EXT_ZERO;
-            assign Aluctrl = `ALUOp_OR;
+            jump = 0;
+            RegDst = 0;
+            Branch = 0;
+            MemR = 0;
+            Mem2R = 0;
+            MemW = 0;
+            RegW = 1;
+            Alusrc = 1;
+            ExtOp = `EXT_ZERO;
+            Aluctrl = `ALUOp_OR;
         end
 
         `INSTR_LW_OP:
         begin
-            assign jump = 0;
-            assign RegDst = 0;
-            assign Branch = 0;
-            assign MemR = 1;
-            assign Mem2R = 1;
-            assign MemW = 0;
-            assign RegW = 1;
-            assign Alusrc = 1;
-            assign ExtOp = 1;
-            assign Aluctrl = 5'b0;
+            jump = 0;
+            RegDst = 0;
+            Branch = 0;
+            MemR = 1;
+            Mem2R = 1;
+            MemW = 0;
+            RegW = 1;
+            Alusrc = 1;
+            ExtOp = 1;
+            Aluctrl = 5'b0;
         end
 
 
         `INSTR_SW_OP:
         begin
-            assign jump = 0;
-            assign RegDst = 0;
-            assign Branch = 0;
-            assign MemR = 0;
-            assign Mem2R = 0;
-            assign MemW = 1;
-            assign RegW = 0;
-            assign Alusrc = 1;
-            assign ExtOp = 1;
-            assign Aluctrl = 5'b0;
+            jump = 0;
+            RegDst = 0;
+            Branch = 0;
+            MemR = 0;
+            Mem2R = 0;
+            MemW = 1;
+            RegW = 0;
+            Alusrc = 1;
+            ExtOp = 1;
+            Aluctrl = 5'b0;
         end
 
 
         `INSTR_LUI_OP:
         begin
-            assign jump = 0;
-            assign RegDst = 1;
-            assign Branch = 0;
-            assign MemR = 0;
-            assign Mem2R = 0;
-            assign MemW = 0;
-            assign RegW = 1;
-            assign Alusrc = 1;
-            assign ExtOp = `EXT_SIGNED;
-            assign Aluctrl = `ALUOp_LUI;
+            jump = 0;
+            RegDst = 1;
+            Branch = 0;
+            MemR = 0;
+            Mem2R = 0;
+            MemW = 0;
+            RegW = 1;
+            Alusrc = 1;
+            ExtOp = `EXT_SIGNED;
+            Aluctrl = `ALUOp_LUI;
+        end
+        
+        `INSTR_BEQ_OP:
+        begin
+            jump = 0;
+            RegDst = 0;
+            Branch = 1;
+            MemR = 0;
+            Mem2R = 0;
+            MemW = 0;
+            RegW = 0;
+            Alusrc = 0;
+            ExtOp = 0;
+            Aluctrl = 5'b0;
         end
 
         default:
         begin
-            assign jump = 0;
-            assign RegDst = 0;
-            assign Branch = 0;
-            assign MemR = 0;
-            assign Mem2R = 0;
-            assign MemW = 0;
-            assign RegW = 0;
-            assign Alusrc = 0;
-            assign ExtOp = 0;
-            assign Aluctrl = 5'b0;
+            jump = 0;
+            RegDst = 0;
+            Branch = 0;
+            MemR = 0;
+            Mem2R = 0;
+            MemW = 0;
+            RegW = 0;
+            Alusrc = 0;
+            ExtOp = 0;
+            Aluctrl = 5'b0;
         end
 
     endcase
