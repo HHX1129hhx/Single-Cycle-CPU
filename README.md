@@ -1,2 +1,3 @@
-# Single-Cycle-CPU
-Single Cycle CPU (Not Completed)
+# Single Cycle CPU
+
+現在プロジェクトを作り上げっていますので、少々お待ちください。
