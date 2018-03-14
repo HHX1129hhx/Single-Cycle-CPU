@@ -32,15 +32,30 @@ begin
             assign ExtOp = `EXT_ZERO;
 
             case (funct)
+                `INSTR_ADD_FUNCT:
+                    assign Aluctrl = `ALUOp_ADD;
                 `INSTR_ADDU_FUNCT:
                     assign Aluctrl = `ALUOp_ADDU;
+                `INSTR_SUB_FUNCT:
+                    assign Aluctrl = `ALUOp_SUB;
                 `INSTR_SUBU_FUNCT:
                     assign Aluctrl = `ALUOp_SUBU;
-                default:
-                    ;
             endcase
         end
 
+        `INSTR_ORI_OP:
+        begin
+            assign jump = 0;
+            assign RegDst = 0;
+            assign Branch = 0;
+            assign MemR = 0;
+            assign Mem2R = 0;
+            assign MemW = 0;
+            assign RegW = 1;
+            assign Alusrc = 1;
+            assign ExtOp = `EXT_ZERO;
+            assign Aluctrl = `ALUOp_OR;
+        end
 
         `INSTR_LW_OP:
         begin
@@ -53,22 +68,22 @@ begin
             assign RegW = 1;
             assign Alusrc = 1;
             assign ExtOp = 1;
-            assign Aluctrl = 5'd0;
+            assign Aluctrl = 5'b0;
         end
 
 
         `INSTR_SW_OP:
         begin
             assign jump = 0;
-            // assign RegDst = x;
+            assign RegDst = 0;
             assign Branch = 0;
-            assign MemR = 1;
-            assign Mem2R = 1;
+            assign MemR = 0;
+            assign Mem2R = 0;
             assign MemW = 1;
-            assign RegW = 1;
+            assign RegW = 0;
             assign Alusrc = 1;
             assign ExtOp = 1;
-            assign Aluctrl = 5'd0;
+            assign Aluctrl = 5'b0;
         end
 
 
@@ -86,18 +101,18 @@ begin
             assign Aluctrl = `ALUOp_LUI;
         end
 
-        `INSTR_ORI_OP:
+        default:
         begin
             assign jump = 0;
-            assign RegDst = 1;
+            assign RegDst = 0;
             assign Branch = 0;
             assign MemR = 0;
             assign Mem2R = 0;
             assign MemW = 0;
-            assign RegW = 1;
-            assign Alusrc = 1;
-            assign ExtOp = `EXT_ZERO;
-            assign Aluctrl = `ALUOp_OR;
+            assign RegW = 0;
+            assign Alusrc = 0;
+            assign ExtOp = 0;
+            assign Aluctrl = 5'b0;
         end
 
     endcase
