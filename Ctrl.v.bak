@@ -154,7 +154,7 @@ module Ctrl(jump, RegDst, Branch, MemR, Mem2R, MemW, RegW, Alusrc, ExtOp, Aluctr
                 assign RegW = 0;
                 assign Alusrc = 0;
                 assign ExtOp = `EXT_ZERO;
-                assign Aluctrl=`ALUOp_ADD;
+               // assign Aluctrl=`ALUOp_BNE;
              end
             
            `INSTR_ADDI_OP :

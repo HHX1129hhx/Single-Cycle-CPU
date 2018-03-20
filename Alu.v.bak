@@ -30,9 +30,9 @@ module Alu(AluResult, Zero, DataIn1, DataIn2, AluCtrl,Sa);
             `ALUOp_XOR:   AluResult = DataIn1 ^ DataIn2;
             `ALUOp_SLTU:  AluResult = (DataIn1 < DataIn2) ? 1 : 0;
             `ALUOp_SLT:   AluResult = ($signed(DataIn1) < $signed(DataIn2)) ? 1 : 0;
-            `ALUOp_EQL:   AluResult = ($signed(DataIn1)==$signed(DataIn2)) ? 0 : 1;
+            `ALUOp_EQL:   AluResult = (DataIn1 == DataIn2) ? 1 : 0;
             `ALUOp_LUI:   AluResult = {DataIn2[15:0], 16'd0};
-            `ALUOp_BNE:   AluResult = ($signed(DataIn1)== $signed(DataIn2)) ? 1 : 0;
+            `ALUOp_BNE:   AluResult = ($signed(DataIn1 )== $signed(DataIn2)) ? 1 : 0;
             `ALUOp_SLL:   AluResult = DataIn2 << Sa;
             `ALUOp_SRL:   AluResult = DataIn2 >> Sa;
             /* `ALUOp_GT0:

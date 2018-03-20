@@ -5,8 +5,6 @@ module PcUnit(PC,PcReSet,PcSel,Clk,Adress,jump,opCode);
 	input   PcSel;
 	input   Clk;
 	input   [31:0] Adress;
-	input [31:0]opCode;
-	input jump;
 	
 	output reg[31:0] PC;
 	

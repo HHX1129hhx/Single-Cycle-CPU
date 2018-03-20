@@ -50,7 +50,7 @@ module Mips(Clk,Reset);
     assign pcSel = ((Branch&&zero)==1)?1:0;
 
 //PC块实例化    
-    PcUnit U_pcUnit(.PC(pcOut),.PcReSet(Reset),.PcSel(pcSel),.Clk(Clk),.Adress(extDataOut),.jump(jump),.opCode(opCode));
+    PcUnit U_pcUnit(.PC(pcOut),.PcReSet(Reset),.PcSel(pcSel),.Clk(Clk),.Adress(extDataOut));
     
     assign imAdr = pcOut[6:2];
 
